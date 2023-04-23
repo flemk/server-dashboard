@@ -1,0 +1,62 @@
+{% extends "header.html" %}
+
+{% block content %}
+<table class="server-list">
+    <tr style="font-weight: bold;">
+        <td>
+            Server-Name
+        </td>
+        <td>
+            IP-Address
+        </td>
+        <td>
+            MAC-Address
+        </td>
+        <td>
+            Endpoint
+        </td>
+        <td>
+            Status
+        </td>
+        <td>
+            Actions
+        </td>
+        <td>
+            WOL-timing
+        </td>
+    </tr>
+    {% if server_list %}
+        {% for server in server_list %}
+            <tr>
+                <td>
+                    {{ server.display_name }}
+                </td>
+                <td>
+                    {{ server.ip_address }}
+                </td>
+                <td>
+                    {{ server.mac_address }}
+                </td>
+                <td>
+                    {{ server.endpoint_for_online_check }}:{{ server.endpoint_port_for_online_check }}
+                </td>
+                <td>
+                    {{ server.is_online }}
+                </td>
+                <td>
+                    <a href="/dashboard/wake/{{ server.id }}"><input type="button" class="success" value="WAKE"></a>
+                    <a href="#"><input type="button" class="error" value="SHUTDOWN"></a>
+                </td>
+                <td>
+                    <a href="/dashboard/bitmap/{{ server.id }}" class="link">bitmap</a>
+                </td>
+            </tr>
+        {% endfor %}
+    {% else %}
+            <tr>
+                <td colspan="4">No Servers found. Create your first Server!</td>
+            </tr>
+    {% endif %}
+
+</table>
+{% endblock %}

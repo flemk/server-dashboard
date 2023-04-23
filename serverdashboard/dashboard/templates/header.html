@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Server dashboard</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+</html>
+
+<body class="test">
+    {% if message %}
+        <div class="message {{ message.type }}" style="position: absolute; top: 2rem; left: 50%; transform: translate(-50%, 0);">
+            {{ message.content }}
+        </div>
+    {% endif %}
+    <div class="wrapper">
+        <a href="/dashboard/dashboard" class="nolink">
+            <p class="title">Your Servers</p>
+        </a>
+        <div>
+            <input type="button" value="Add Server (+)">
+            <input type="button" value="Edit List (E)">
+            <input type="button" value="GitHub (G)">
+        </div>
+        <hr>
+        {% block content %}{% endblock %}
+    </div>
+</body>

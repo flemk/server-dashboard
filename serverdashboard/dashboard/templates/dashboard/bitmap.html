@@ -1,0 +1,33 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+    <div style="display: flex;">
+        <div style="display: inline-grid; font-size: 0.75rem; text-align: right;">
+            <span class="bitmap" style="background-color: transparent;">&nbsp;</span>
+            {% for weekday, hourly in bitmap.items %}
+                <span style="height: 1rem;">{{ weekday }}:</span>
+            {% endfor %}
+        </div>
+        <div>
+            <div>
+                {% for hour, count in bitmap.Mon.items %}
+                    <span class="bitmap" style="font-size: 0.75rem; text-align: center; background-color: white;">{{ hour }}</span>
+                {% endfor %}
+            </div>
+            {% for weekday, hourly in bitmap.items %}
+                <div>
+                    {% for hour, count in hourly.items %}
+                        <span class="bitmap"
+                            {% if count > 0.12 %} value="high"
+                            {% elif count > 0.09 %} value="med"
+                            {% elif count > 0.075 %} value="low"
+                            {% endif %}
+                        >&nbsp;</span>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

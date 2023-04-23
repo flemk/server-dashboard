@@ -1,0 +1,81 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.wrapper {
+    width: 75%;
+    margin: auto;
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 0;
+}
+
+input[type=button] {
+    border: none;
+    border-radius: 0.15rem;
+    padding: 0.25rem;
+    cursor: pointer;
+}
+
+.server-list {
+    border-spacing: 2rem 0;
+}
+
+.message {
+    padding: 1rem;
+    background-color: grey;
+    border-radius: 0.5rem;
+    animation-name: fade-out;
+    animation-duration: 1s;
+    animation-delay: 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+.success {
+    background-color: green !important;
+    color: white;
+}
+
+.error {
+    background-color: red !important;
+    color: white;
+}
+
+.bitmap {
+    width: 1rem;
+    height: 1rem;
+    background-color: grey;
+    margin: 0;
+    display: table-cell;
+    border-radius: 0.3rem;
+    border: 1px solid white;
+}
+
+.bitmap[value='low'] {
+    background-color: darkgrey;
+}
+
+.bitmap[value='med'] {
+    background-color: yellowgreen;
+}
+
+.bitmap[value='high'] {
+    background-color: green;
+}
+
+.nolink {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:visited {
+    all: inherit;
+}
+
+@keyframes fade-out {
+    0% { opacity: 1; }
+    100% {opacity: 0; }
+}
