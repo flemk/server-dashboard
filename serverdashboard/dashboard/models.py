@@ -18,7 +18,9 @@ class Timestamp(models.Model):
 
     def get_weekday(self):
         ''' returns weekday from 0=mon to 6=sun '''
+        # pylint: disable=no-member
         return self.timestamp.weekday()
+        # pylint: enable=no-member
 
 class ServerActionTimeList(models.Model):
     ''' This is the heuristic when your server was woken
@@ -32,7 +34,9 @@ class ServerActionTimeList(models.Model):
         new_timestamp = Timestamp(timestamp=timestamp)
         new_timestamp.save()
 
+        # pylint: disable=no-member
         self.list_of_timestamps.add(new_timestamp)
+        # pylint: enable=no-member
 
     def count_actions(self, timestamp):
         ''' counts how often action was triggered in the past 30 days,
@@ -43,9 +47,11 @@ class ServerActionTimeList(models.Model):
         timestamp_delta_days_ago = timezone.now() - datetime.timedelta(days=delta_days)
         weekday = timestamp.weekday()
 
+        # pylint: disable=no-member
         timestamps_in_hour_and_range = self.list_of_timestamps.filter(
             timestamp__hour=timestamp.hour,
             timestamp__gte=timestamp_delta_days_ago)
+        # pylint: enable=no-member
 
         timestamps_filtered = []
         for element in timestamps_in_hour_and_range.all():

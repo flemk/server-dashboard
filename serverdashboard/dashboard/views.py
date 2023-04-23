@@ -5,10 +5,12 @@ from django.shortcuts import render, get_object_or_404
 from .models import Server
 
 def dashboard(request):
-    ''' tba '''
+    ''' show a list of all created servers '''
+    # pylint: disable=no-member
     context = {
         'server_list': Server.objects.order_by('display_name')
     }
+    # pylint: enable=no-member
 
     return render(request, 'dashboard/dashboard.html', context)
 
@@ -18,6 +20,7 @@ def wake(request, server_id):
     server = get_object_or_404(Server, id=server_id)
     server.wake_on_lan()
 
+    # pylint: disable=no-member
     context = {
         'server_list': Server.objects.order_by('display_name'),
         'message': {
@@ -25,6 +28,7 @@ def wake(request, server_id):
             'content': f'Magic packet to { server.display_name } was sent successfully!',
             }
     }
+    # pylint: enable=no-member
 
     return render(request, 'dashboard/dashboard.html', context)
 
