@@ -128,6 +128,7 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Defining cronjobs per django-cron
+# running wake_servers_check every hour at **:55
 CRONJOBS = [
-    ('55 * * * *', 'dashboard.wake_servers_check'),  # running wake_servers_check every hour at **:55
+    ('55 * * * *', 'dashboard.wake_servers_check'),
 ]

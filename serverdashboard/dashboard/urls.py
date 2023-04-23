@@ -7,6 +7,6 @@ from . import views
 
 urlpatterns = [
     path('dashboard/', views.dashboard, name='dashboard'),
-    path('wake/<int:id>', views.wake, name='wake'),
-    path('bitmap/<int:id>', views.bitmap, name='bitmap')
+    path('wake/<int:server_id>', views.wake, name='wake'),
+    path('bitmap/<int:server_id>', views.bitmap, name='bitmap')
 ]

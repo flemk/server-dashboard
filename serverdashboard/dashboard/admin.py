@@ -19,12 +19,12 @@ class ServerActionTimeListAdmin(admin.ModelAdmin):
     list_display = ('id', 'fetch_count_actions', )
 
     def fetch_list_of_timestamps(self, instance):
-        '''
+        ''' returns instance.list_of_timestamps as string
         '''
         return str(instance.list_of_timestamps.all())
-    
+
     def fetch_count_actions(self, instance):
-        '''
+        ''' returns instance.count_actions as string
         '''
         return str(instance.count_actions(timestamp=timezone.now()))
 admin.site.register(ServerActionTimeList, ServerActionTimeListAdmin)
@@ -34,10 +34,12 @@ class TimestampAdmin(admin.ModelAdmin):
     list_display = ('id', 'timestamp', 'fetch_happened_in_timeframe', 'fetch_weekday')
 
     def fetch_weekday(self, instance):
+        ''' returns instance.timestamp.weekday as string
+        '''
         return instance.timestamp.weekday()
 
     def fetch_happened_in_timeframe(self, instance):
-        '''
+        ''' returns instance.happened_in_timeframe as string
         '''
         return instance.happened_in_timeframe(delta_days=30, time_now=timezone.now())
 admin.site.register(Timestamp, TimestampAdmin)

@@ -21,7 +21,7 @@ class Timestamp(models.Model):
         return self.timestamp.weekday()
 
 class ServerActionTimeList(models.Model):
-    '''
+    ''' This is the heuristic when your server was woken
     '''
 
     list_of_timestamps = models.ManyToManyField(Timestamp, null=True, blank=True, default=None)
@@ -38,8 +38,9 @@ class ServerActionTimeList(models.Model):
         ''' counts how often action was triggered in the past 30 days,
         on the same day in the same hour as param timestamp'''
 
-        DELTA_DAYS = 30
-        timestamp_delta_days_ago = timezone.now() - datetime.timedelta(days=DELTA_DAYS)
+        delta_days = 30
+
+        timestamp_delta_days_ago = timezone.now() - datetime.timedelta(days=delta_days)
         weekday = timestamp.weekday()
 
         timestamps_in_hour_and_range = self.list_of_timestamps.filter(
@@ -52,7 +53,7 @@ class ServerActionTimeList(models.Model):
                 continue
             timestamps_filtered.append(element)
 
-        return len(timestamps_filtered) / DELTA_DAYS
+        return len(timestamps_filtered) / delta_days
 
 class Server(models.Model):
     ''' implements a server model, having its properties as attributes

@@ -1,9 +1,7 @@
 ''' refer to Django documentation for details
 (c) Franz Ludwig Kostelezky, <info@kostelezky.com>'''
 
-import datetime
 from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
 from .models import Server
 
 def dashboard(request):
@@ -14,10 +12,10 @@ def dashboard(request):
 
     return render(request, 'dashboard/dashboard.html', context)
 
-def wake(request, id):
+def wake(request, server_id):
     ''' requires an valid id to a Server instance and sends a magic packet to it '''
 
-    server = get_object_or_404(Server, id=id)
+    server = get_object_or_404(Server, id=server_id)
     server.wake_on_lan()
 
     context = {
@@ -30,10 +28,10 @@ def wake(request, id):
 
     return render(request, 'dashboard/dashboard.html', context)
 
-def bitmap(request, id):
+def bitmap(request, server_id):
+    ''' displaying the heuristic as bitmap
     '''
-    '''
-    server = get_object_or_404(Server, id=id)
+    server = get_object_or_404(Server, id=server_id)
 
     context = {
         'server': {
