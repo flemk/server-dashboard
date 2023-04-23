@@ -36,6 +36,10 @@ def bitmap(request, id):
     server = get_object_or_404(Server, id=id)
 
     context = {
+        'server': {
+            'name': server.display_name,
+            'ip_address': server.ip_address,
+            },
         'bitmap': server.get_bitmap(),
     }
 

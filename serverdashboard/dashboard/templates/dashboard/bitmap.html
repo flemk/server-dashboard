@@ -2,6 +2,11 @@
 
 {% block content %}
 
+    <div>
+        <p><span style="font-weight: bold;">{{ server.name }}</span>:&nbsp;<span>{{ server.ip_address }}</span></p>
+        <p>The greener a parcel is, the more often the server got activated at this time of day in the previous 30 days.</p>
+    </div>
+
     <div style="display: flex;">
         <div style="display: inline-grid; font-size: 0.75rem; text-align: right;">
             <span class="bitmap" style="background-color: transparent;">&nbsp;</span>
