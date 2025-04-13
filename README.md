@@ -1,3 +1,5 @@
+> This project is superseeded by [https://github.com/flemk/homelab-operator](flemk/homelab-operator).
+---
 # server-dashboard
 ## Functionality
 This Repo provides the following functionality:
